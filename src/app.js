@@ -3,9 +3,12 @@ const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
 require("dotenv").config();
+const mongoose = require("mongoose");
 
 const connectDB = require("./config/database");
 const productRoutes = require("./routes/productRoutes");
+const authRoutes = require("./routes/authRoutes");
+const cartRoutes = require("./routes/cartRoutes");
 
 // Inicializar la aplicación
 const app = express();
@@ -22,6 +25,8 @@ app.use(morgan("dev"));
 
 // Rutas
 app.use("/api/products", productRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/cart", cartRoutes);
 
 // Ruta básica
 app.get("/", (req, res) => {
