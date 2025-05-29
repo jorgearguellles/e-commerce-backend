@@ -9,6 +9,7 @@ const connectDB = require("./config/database");
 const productRoutes = require("./routes/productRoutes");
 const authRoutes = require("./routes/authRoutes");
 const cartRoutes = require("./routes/cartRoutes");
+const orderRoutes = require("./routes/orderRoutes");
 
 // Inicializar la aplicación
 const app = express();
@@ -27,6 +28,7 @@ app.use(morgan("dev"));
 app.use("/api/products", productRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/cart", cartRoutes);
+app.use("/api/orders", orderRoutes);
 
 // Ruta básica
 app.get("/", (req, res) => {
