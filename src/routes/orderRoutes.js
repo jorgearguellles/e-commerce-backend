@@ -3,7 +3,7 @@ const router = express.Router();
 const { authenticate, isAdmin } = require("../middlewares/authMiddleware");
 const {
   createOrder,
-  getOrders,
+  getOrdersByUser,
   getOrderById,
   updateOrderStatus,
   cancelOrder,
@@ -173,7 +173,7 @@ router.post("/", authenticate, createOrder);
  *       401:
  *         description: No autorizado
  */
-router.get("/", authenticate, getOrders);
+router.get("/", authenticate, getOrdersByUser);
 
 /**
  * @swagger

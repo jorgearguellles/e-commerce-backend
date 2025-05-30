@@ -14,6 +14,7 @@ const {
  *   post:
  *     summary: Registrar un nuevo usuario
  *     tags: [Auth]
+ *     security: [] # No requiere autenticación
  *     requestBody:
  *       required: true
  *       content:
@@ -50,6 +51,7 @@ router.post("/register", register);
  *   post:
  *     summary: Iniciar sesión
  *     tags: [Auth]
+ *     security: [] # No requiere autenticación
  *     requestBody:
  *       required: true
  *       content:
