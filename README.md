@@ -2,6 +2,10 @@
 
 API REST para un sistema de e-commerce desarrollado con Node.js y Express.
 
+[![GitHub](https://img.shields.io/github/license/jorgearguellles/e-commerce-backend)](https://github.com/jorgearguellles/e-commerce-backend/blob/main/LICENSE)
+[![GitHub](https://img.shields.io/github/stars/jorgearguellles/e-commerce-backend)](https://github.com/jorgearguellles/e-commerce-backend/stargazers)
+[![GitHub](https://img.shields.io/github/forks/jorgearguellles/e-commerce-backend)](https://github.com/jorgearguellles/e-commerce-backend/network/members)
+
 ## Características
 
 - Gestión de productos
@@ -25,7 +29,8 @@ API REST para un sistema de e-commerce desarrollado con Node.js y Express.
 1. Clonar el repositorio
 
 ```bash
-git clone [url-del-repositorio]
+git clone git@github.com:jorgearguellles/e-commerce-backend.git
+cd e-commerce-backend
 ```
 
 2. Instalar dependencias
