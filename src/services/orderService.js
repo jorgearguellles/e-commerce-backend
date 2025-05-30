@@ -1,5 +1,6 @@
 const Order = require("../models/Order");
 const Cart = require("../models/Cart");
+const notificationService = require("./notificationService");
 
 // Crear una orden a partir del carrito del usuario
 defaultCreateOrder = async (
@@ -64,7 +65,7 @@ const updateOrderStatus = async (orderId, status) => {
     throw new Error("Estado no válido");
   }
 
-  const order = await Order.findById(orderId);
+  const order = await Order.findById(orderId).populate("user");
   if (!order) throw new Error("Orden no encontrada");
 
   // Validar transiciones de estado
@@ -78,6 +79,16 @@ const updateOrderStatus = async (orderId, status) => {
 
   order.status = status;
   await order.save();
+
+  // Crear notificación para el usuario
+  await notificationService.createNotification(
+    order.user._id,
+    "order_status",
+    "Actualización de Orden",
+    `Tu orden #${order._id} ha sido actualizada a: ${status}`,
+    { orderId: order._id, status }
+  );
+
   return order;
 };
 
