@@ -55,7 +55,7 @@ app.use((err, req, res, next) => {
 });
 
 // Puerto
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 
 // Iniciar servidor
 app.listen(PORT, () => {
