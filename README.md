@@ -1,6 +1,6 @@
 # E-commerce API
 
-API REST para un sistema de e-commerce desarrollado con Node.js y Express, implementando arquitectura limpia y patrones de diseño modernos.
+API RESTful para un sistema de comercio electrónico que proporciona endpoints para la gestión de productos, usuarios, carritos de compra y órdenes. Desarrollada con Node.js y Express, implementa una arquitectura modular y escalable con autenticación JWT, documentación interactiva con Swagger y persistencia de datos en MongoDB.
 
 [![GitHub](https://img.shields.io/github/license/jorgearguellles/e-commerce-backend)](https://github.com/jorgearguellles/e-commerce-backend/blob/main/LICENSE)
 [![GitHub](https://img.shields.io/github/stars/jorgearguellles/e-commerce-backend)](https://github.com/jorgearguellles/e-commerce-backend/stargazers)
@@ -209,11 +209,3 @@ npm start
 ## 📄 Licencia
 
 Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
-
-## 🙏 Agradecimientos
-
-- [Node.js](https://nodejs.org/)
-- [Express](https://expressjs.com/)
-- [MongoDB](https://www.mongodb.com/)
-- [Mongoose](https://mongoosejs.com/)
-- [Swagger](https://swagger.io/)
