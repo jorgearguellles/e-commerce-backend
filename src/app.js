@@ -59,8 +59,8 @@ const PORT = process.env.PORT;
 
 // Iniciar servidor
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on: https://localhost:${PORT}`);
   console.log(
-    `API Documentation available at http://localhost:${PORT}/api-docs`
+    `API Documentation available at https://localhost:${PORT}/api-docs`
   );
 });

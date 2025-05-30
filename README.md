@@ -1,30 +1,99 @@
 # E-commerce API
 
-API REST para un sistema de e-commerce desarrollado con Node.js y Express.
+API REST para un sistema de e-commerce desarrollado con Node.js y Express, implementando arquitectura limpia y patrones de diseño modernos.
 
 [![GitHub](https://img.shields.io/github/license/jorgearguellles/e-commerce-backend)](https://github.com/jorgearguellles/e-commerce-backend/blob/main/LICENSE)
 [![GitHub](https://img.shields.io/github/stars/jorgearguellles/e-commerce-backend)](https://github.com/jorgearguellles/e-commerce-backend/stargazers)
 [![GitHub](https://img.shields.io/github/forks/jorgearguellles/e-commerce-backend)](https://github.com/jorgearguellles/e-commerce-backend/network/members)
 
-## Características
+## 🚀 Características
 
-- Gestión de productos
-- Sistema de usuarios y autenticación
+- Gestión de productos con CRUD
+- Sistema de usuarios y autenticación JWT
 - Carrito de compras
-- Sistema de pagos
-- Gestión de órdenes
-- Sistema de notificaciones
+- Sistema de órdenes
+- Documentación de API con Swagger
+- Validación de datos y manejo de errores
+- Roles y permisos de usuario
 
-## Tecnologías
+## 🛠 Tecnologías
 
-- Node.js
-- Express
-- MongoDB
-- Mongoose
-- JWT para autenticación
-- Swagger para documentación
+- **Backend Framework**: Node.js con Express
+- **Base de Datos**: MongoDB con Mongoose
+- **Autenticación**: JWT (JSON Web Tokens)
+- **Documentación**: Swagger/OpenAPI
+- **Validación**: Express Validator
+- **Seguridad**: Helmet, CORS
+- **Logging**: Morgan
 
-## Instalación
+## 🏗 Arquitectura
+
+El proyecto sigue una arquitectura en capas con los siguientes componentes:
+
+```
+src/
+├── config/         # Configuraciones (DB, Swagger, etc.)
+├── controllers/    # Controladores (Manejo de requests/responses)
+├── models/         # Modelos de datos (Mongoose schemas)
+├── routes/         # Rutas de la API
+├── services/       # Lógica de negocio
+└── middlewares/    # Middlewares personalizados
+```
+
+### Patrones de Diseño Implementados
+
+1. **MVC (Model-View-Controller)**
+
+   - Models: Schemas de Mongoose
+   - Controllers: Manejo de requests
+   - Views: JSON responses
+
+2. **Service Layer Pattern**
+
+   - Lógica de negocio separada
+   - Reutilización de código
+
+3. **Middleware Pattern**
+   - Autenticación
+   - Validación
+   - Manejo de errores
+
+## 🔒 Seguridad
+
+- Autenticación JWT
+- Encriptación de contraseñas con bcrypt
+- Protección contra ataques comunes (Helmet)
+- Validación de datos de entrada
+- Manejo seguro de errores
+
+## 📊 Base de Datos
+
+### Modelos Principales
+
+1. **User**
+
+   - Autenticación y autorización
+   - Roles y permisos
+   - Perfil de usuario
+
+2. **Product**
+
+   - Catálogo de productos
+   - Inventario
+   - Categorías
+
+3. **Order**
+
+   - Gestión de órdenes
+   - Estados de orden
+   - Historial de compras
+
+4. **Cart**
+   - Carrito de compras
+   - Items y cantidades
+   - Cálculo de totales
+
+## 🚀 Instalación
 
 1. Clonar el repositorio
 
@@ -40,7 +109,7 @@ npm install
 ```
 
 3. Configurar variables de entorno
-   Crear un archivo `.env` en la raíz del proyecto con las siguientes variables:
+   Crear un archivo `.env` en la raíz del proyecto:
 
 ```
 PORT=3000
@@ -55,23 +124,11 @@ NODE_ENV=development
 npm run dev
 ```
 
-## Estructura del Proyecto
-
-```
-src/
-├── config/         # Configuraciones
-├── controllers/    # Controladores
-├── models/         # Modelos de datos
-├── routes/         # Rutas de la API
-├── services/       # Lógica de negocio
-└── middlewares/    # Middlewares
-```
-
-## Guía de Uso de la API
+## 📚 Guía de Uso de la API
 
 ### Documentación de la API
 
-La documentación completa de la API está disponible en Swagger UI cuando el servidor está corriendo:
+La documentación completa de la API está disponible en Swagger UI:
 
 ```
 http://localhost:3000/api-docs
@@ -101,7 +158,7 @@ http://localhost:3000/api-docs
        "password": "contraseña123"
      }
      ```
-   - Respuesta: Recibirás un token JWT
+   - Respuesta: Token JWT
      ```json
      {
        "token": "eyJhbGciOiJIUzI1NiIs...",
@@ -114,68 +171,49 @@ http://localhost:3000/api-docs
      ```
 
 3. **Acceso a Endpoints Protegidos**
-
    - En Swagger UI:
-
-     1. Haz clic en el botón "Authorize" en la parte superior
-     2. Ingresa el token JWT en el formato: `Bearer tu-token-jwt`
+     1. Haz clic en "Authorize"
+     2. Ingresa el token: `Bearer tu-token-jwt`
      3. Haz clic en "Authorize"
-     4. Ahora puedes acceder a todos los endpoints protegidos
+   - En Postman/HTTP:
+     - Header: `Authorization: Bearer tu-token-jwt`
 
-   - En Postman o cualquier cliente HTTP:
-     1. Agrega el header: `Authorization: Bearer tu-token-jwt`
+## 📦 Despliegue
 
-### Endpoints Principales
-
-#### Productos
-
-- `GET /api/products` - Listar productos
-- `POST /api/products` - Crear producto (requiere admin)
-- `GET /api/products/:id` - Obtener producto
-- `PUT /api/products/:id` - Actualizar producto (requiere admin)
-- `DELETE /api/products/:id` - Eliminar producto (requiere admin)
-
-#### Carrito
-
-- `GET /api/cart` - Ver carrito
-- `POST /api/cart/items` - Agregar producto al carrito
-- `PUT /api/cart/items/:id` - Actualizar cantidad
-- `DELETE /api/cart/items/:id` - Eliminar producto del carrito
-
-#### Órdenes
-
-- `POST /api/orders` - Crear orden
-- `GET /api/orders` - Listar órdenes del usuario
-- `GET /api/orders/:id` - Ver detalle de orden
-- `PUT /api/orders/:id/status` - Actualizar estado (requiere admin)
-
-#### Notificaciones
-
-- `GET /api/notifications` - Ver notificaciones
-- `PUT /api/notifications/:id/read` - Marcar como leída
-- `PUT /api/notifications/read-all` - Marcar todas como leídas
-
-### Roles de Usuario
-
-- **Usuario Normal**: Puede ver productos, gestionar su carrito y realizar órdenes
-- **Admin**: Acceso completo a todas las funcionalidades, incluyendo gestión de productos y órdenes
-
-## Desarrollo
-
-Para ejecutar en modo desarrollo:
+### Desarrollo
 
 ```bash
 npm run dev
 ```
 
-## Producción
-
-Para ejecutar en modo producción:
+### Producción
 
 ```bash
 npm start
 ```
 
-## Licencia
+## 🤝 Contribuir
 
-MIT
+1. Fork el proyecto
+2. Crea tu rama de feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
+
+## 👨‍💻 Desarrollador
+
+- **Jorge Arias Argüelles**
+  - [LinkedIn](https://www.linkedin.com/in/jorgeariasarguelles/)
+  - [GitHub](https://github.com/jorgearguellles)
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
+
+## 🙏 Agradecimientos
+
+- [Node.js](https://nodejs.org/)
+- [Express](https://expressjs.com/)
+- [MongoDB](https://www.mongodb.com/)
+- [Mongoose](https://mongoosejs.com/)
+- [Swagger](https://swagger.io/)
